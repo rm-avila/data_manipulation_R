@@ -39,3 +39,49 @@ pew %>%
 # Conteos de casos de tuberculosis confirmados por país, año y grupo demográfico
 # Fuente: World Health Organisation
 
+tb <- as_tibble(read.csv("tidyr/vignettes/tb.csv", stringsAsFactors = FALSE))
+tb
+
+
+# Cuáles son las variables? Cuáles son las unidades?
+
+# Desorden por qué?
+# Una columna contiene datos de más de una variable
+# Ventaja: Almacenamiento más eficiente, captura más sencilla
+
+# Ordenar
+tb2 <- tb %>% 
+  gather(demo, n, -iso2, -year, na.rm = TRUE)
+tb2
+
+tb3 <- tb2 %>% 
+  separate(demo, c("sex", "age"), 1)
+tb3
+ # Ventaja porque nos gustaría comparar tasas en vez de frecuencias
+
+
+# Desorden # 3 ------------------------------------------------------------
+
+# Clima diario en una estación (MX17004) en México durante 5 meses de 2010
+# Fuente:  Global Historical Climatology Network
+
+weather <- as_tibble(read.csv("tidyr/vignettes/weather.csv", stringsAsFactors = FALSE))
+weather
+
+# Cuáles son las variables? Cuáles son las unidades?
+
+# Desorden por qué?
+# Variables tanto en filas como en columnas
+
+weather2 <- weather %>%
+  gather(day, value, d1:d31, na.rm = TRUE)
+weather2
+
+weather3 <- weather2 %>% 
+  mutate(day = parse_number(day)) %>%
+  select(id, year, month, day, element, value) %>%
+  arrange(id, year, month, day)
+
+weather3
+
+weather3 %>% spread(element, value)
