@@ -5,8 +5,7 @@ na_to_zero <- Vectorize(function(x){
 })
 
 cargar_paquetes <- function(paquetes_extra = NULL){
-  paquetes <- c("tidyverse", "stringr", "lubridate", "foreign", "readxl",
-                "RColorBrewer", "ggrepel", paquetes_extra)
+  paquetes <- c("tidyverse", paquetes_extra)
   if (length(setdiff(paquetes, rownames(installed.packages()))) > 0) {
     install.packages(setdiff(paquetes, rownames(installed.packages())))  
   }
