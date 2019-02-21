@@ -1,3 +1,6 @@
+[submodule "dplyr"]
+	path = dplyr
+	url = https://github.com/tidyverse/dplyr
 [submodule "tidyr"]
 	path = tidyr
 	url = https://github.com/tidyverse/tidyr
