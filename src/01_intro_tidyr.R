@@ -53,12 +53,14 @@ tb
 # Ordenar
 tb2 <- tb %>% 
   gather(demo, n, -iso2, -year, na.rm = TRUE)
+
 tb2
 
 tb3 <- tb2 %>% 
   separate(demo, c("sex", "age"), 1)
 tb3
- # Ventaja porque nos gustaría comparar tasas en vez de frecuencias
+ 
+# Ventaja porque nos gustaría comparar tasas en vez de frecuencias
 
 
 # Desorden # 3 ------------------------------------------------------------
@@ -80,8 +82,8 @@ weather2
 
 weather3 <- weather2 %>% 
   mutate(day = parse_number(day)) %>%
-  select(id, year, month, day, element, value) %>%
-  arrange(id, year, month, day)
+  select(year, month, day, element, value) %>%
+  arrange(year, month, day)
 
 weather3
 
